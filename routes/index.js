@@ -25,12 +25,13 @@ var upload = multer({storage: storage,
 router.post('/data', function (req, res, next) {
   upload(req, res, function (err) {
     if (err instanceof multer.MulterError) {
-        res.render('index', {message : err});
+        res.render('index', {message : err,data:''});
     } else if (err) {
-      res.render('index', {message : err});
+      res.render('index', {message : err,data:''});
     }
     else  {
-      res.render('index', {message : 'thanh cong'});
+      res.render('index', {message : 'thanh cong',data: req.files});
+      console.log(req.files);
     }
 
 
@@ -39,7 +40,7 @@ router.post('/data', function (req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', message : '' });
+  res.render('index', { title: 'Express', message : '' ,data:''});
 });
 
 
